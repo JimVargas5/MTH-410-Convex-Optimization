@@ -4,7 +4,7 @@
 format compact
 
 
-%{ %}
+%{
 "Create a row vector x starting with a, stepping by b, stopping at c"
 x1=1:pi:12
 "Row vector n=4 points linearly spaced btw and including a and b"
@@ -16,5 +16,30 @@ A2=rand(3) %Probability matrix?
 "As above but mxn on interval (a,b)->(2,5)"
 A3=2+(5-2)*rand(2,4)
 "Zero matrix mxn"
-A4=zeros()
+A4=zeros(4,2)
+"Matrix with only ones"
+A5=ones(1,11)
+"Identity"
+A6=eye(3)
+"Size command: returns size of matrix. Returns scalar if quare, vector otherwise"
+A7=rand(size(A6))
+"Diagonal matrix based on a given vector"
+A8=diag(x1)
+"Create vector with random permutation of integers up to n=3"
+x3=randperm(3)
+%}
+
+%{ 
+    Some vector/matrix operations
+Euclidian norm: norm(a)
+min, max
+Find a number k in a vector a: find(a==k), returns position of k
+inverse of matrix: inv(a)
+transpose: a'
+determinant, eigenvalues in a vector: det(a), eig(a)
+Solve Ax=b, where A is invertible: x=A\b
+Can get ith row, jth column of a:
+b=a(2,:) or b=a(:,j)
+%}
+
 
