@@ -1,0 +1,5 @@
+# a simple gitignore to fix some things and
+# keep these examples pure and unchanged
+
+*.m
+*.asv
