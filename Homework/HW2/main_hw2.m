@@ -13,7 +13,6 @@ epsilon=10^(-4);
 x0=[5 10]';
 "(a)";
     disp("BM ELS");
-    
     [x,fvalue,iters]=GradientMethodE(A,b,c,x0,epsilon);
     disp("Approx. optimal solution x:"), disp(x);
     fprintf("Associated optimal value f(x): %6.4f\n", fvalue);
@@ -21,7 +20,6 @@ x0=[5 10]';
 "(b)";
     disp(newline+"GM const step size");
     t=.1;
-    
     [x,fvalue,iters]=GradientMethod(A,b,c,x0,t,epsilon);
     disp("Approx. optimal solution x:"), disp(x);
     fprintf("Associated optimal value f(x): %6.4f\n", fvalue);
@@ -29,7 +27,6 @@ x0=[5 10]';
 "(c)";
     disp(newline+"GM backtracking");
     alpha=.5; beta=.5; s=1; % parameters
-    
     [x,fvalue,iters]=GradientMethodB(A,b,c,x0,epsilon,alpha,beta,s);
     disp("Approx. optimal solution x:"), disp(x);
     fprintf("Associated optimal value f(x): %6.4f\n", fvalue);
@@ -82,18 +79,29 @@ x0=[1,2,3,4,5]';
     O=ones(m,1);
     A=[O,Xtrain]; 
     
-    f=@(u,z) u*z'; % the linear regression function
-                   % inputs to f are u: the data variable (like x) and
-                   % z: the coeffs. found with minimizer
-    w0=(10^4)*[4.548,.0152,-.1378]';
+    f=@(u,z) u'*z; % The linear-regressed function.
+                   % Inputs to f are u: the data variable (like x) and
+                   % z: the coeffs. found with minimizer.
+                   % Order of inputs does not really matter though 
+                   % with inner product for real vectors
+    w0=[4.608717759244*10^4,1.520512967679*10^2,-1.554406070409*10^3]';
     epsilon=10^(-2);
-    %A,y,w0
+    % w0 chosen judiciously here to be nearly the optimal solution
+    % Not sure why so many digits are needed... 
+    % Only four sig figs shoul be needed
     
     disp(newline+"GM const step size");
     [w, iters]=GMregression(A,y,w0,m,epsilon);
     disp("Approx. optimal coefficients w_0, w_1, w_2:"), disp(w);
     fprintf("Number of iterations: %6.0f\n", iters);
     
+    disp("Prediction for price of house with 2080 ft^2, 4 bedrooms:");
+    prediction_vector=[1,2080,4]';
+    disp(f(prediction_vector,w)); % $356,232.
+    
+    % TODO: implement a test for error with testing data (not used in training)
+    % TODO: implememt linear regression with exact line and backtracking
+    % TODO: part (b) of the bonus problem with "TwinCityHomes.csv"
 
 
 
@@ -127,8 +135,13 @@ x0=[1,2,3,4,5]';
     % Optimal value calculated analytically to be x=(1,1) with f(x)=0
     disp("Approx. optimal solution x:"), disp(x);
     fprintf("Associated optimal value f(x): %6.4f\n", fvalue);
-    fprintf("Number of iterations: %6.0f\n", iters);
+    fprintf("Number of iterations: %6.0f\n", iterations);
     % this returns x=(1.0095,1.0192) with f(x)=.0001 in 80 iterations
+    
+    % Possible TODO: re-write the gradient methods so that f, grad(f) can
+    % be passed in
+    % Would this be redundant since in practice, f, grad(f) may not have
+    % closed form?
 
 
 
