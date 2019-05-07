@@ -1,6 +1,7 @@
 function [x,fvalue,iterations]=GradientMethod(A,b,c,x0,t,epsilon)
+% Good for f(x)=x'*A*x + b'*x +c
     x=x0;
-    %l Lipschitz constant set here if needed
+    %l Lipshitz constant set here if needed
     %t stepsize set here if needed
     fvl=@(u) u'*A*u + b'*u + c; % specific f
     gd=@(u) 2*A*u + b; % specific gradient of specific f

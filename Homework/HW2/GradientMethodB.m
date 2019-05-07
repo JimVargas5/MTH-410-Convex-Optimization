@@ -1,4 +1,5 @@
 function [x,fvalue,iterations]=GradientMethodB(A,b,c,x0,epsilon,alpha,beta,s)
+% Good for f(x)=x'*A*x + b'*x +c
     x=x0;
     fvl=@(u) u'*A*u+b'*u+c; % specific f
     gd=@(u) 2*A*u + b; % specific gradient of specific f
