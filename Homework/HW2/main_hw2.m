@@ -99,17 +99,13 @@ x0=[1,2,3,4,5]';
     prediction_vector=[1,2080,4]';
     disp(f(prediction_vector,w)); % $356,232.
     
-    % TODO: implement a test for error with testing data (not used in training)
-    disp("Errors between prediction and unused data:");
-    X2=X1(m+1:end,:); O2=ones(size(X2,1),1); U=[O2,X2]; z=y1(m+1:end); u=[0:size(z)];
-    
+    disp("Mean percent error between all predictions and unused data:");
+    X2=X1(m+1:end,:); O2=ones(size(X2,1),1); U=[O2,X2]; z=y1(m+1:end); estimates(1:size(z))=0;
     for i=1:size(U,1)
-        %disp(U(i,:)); 
-        %disp(z(i)); 
-        u(i)=f(U(i,:)',w);
+        estimates(i)=f(U(i,:)',w);
     end
-    z, size(z), u', size(u')
-    %E=regressionError(u',z); E
+    E=meanRegressionError(estimates,z); disp(E);
+    
     % TODO: implememt linear regression with exact line and backtracking
     % TODO: part (b) of the bonus problem with "TwinCityHomes.csv"
 
