@@ -2,7 +2,7 @@
 % MTH 410
 clc, format compact
 
-disp(newline+""+newline+"PROBLEM 2 #########################");
+disp(newline+""+newline+"Fermat-Toricelli version of PROBLEM 2 #########################");
 A=cell2mat(struct2cell(load("UsCity.mat"))); m=size(A,1); n=size(A,2); 
 %m,n
     % Not sure about details of LINE 6, but data is imported as a struct
@@ -14,7 +14,7 @@ N=100;
 % In this problem, both x and y seem to converge after 50-ish iterations
 
 v1=zeros(1,N); % good guess, regular update strategy
-v2=zeros(1,N); % good guess, min update strategy
+v2=zeros(1,N); % good guess, minarg update strategy
 v3=zeros(1,N); %bad guess, min update strategy
 v1(1)=sumDistances(x,A);
 v2(1)=v1(1);
@@ -33,9 +33,9 @@ disp(x);
 figure
 plot(1:N,v1,"."); title("Good guess, regular update strategy");
 figure
-plot(1:N,v2,"."); title("Good guess, minimum update strategy");
+plot(1:N,v2,"."); title("Good guess, minarg update strategy");
 figure
-plot(1:N,v3,"."); title("Bad guess, minimum update stategy");
+plot(1:N,v3,"."); title("Bad guess, minarg update stategy");
 
 % TODO: Implement a convergence criterion. This should involve a WHILE loop
 % and checking to see whether or not the current term is sufficiently close
@@ -43,7 +43,7 @@ plot(1:N,v3,"."); title("Bad guess, minimum update stategy");
 % guess is very good, as in x here; x does not actually begin a descent
 % until about 40 iterations, while y begins a descent immediately. Upon
 % playing around with graphs, this problem only manifests if we use the
-% minimum strategy as employed in plots for v2 and v3, since this allows 
+% minarg strategy as employed in plots for v2 and v3, since this allows 
 % the possibility for x or y to retain an old value for an indefinite 
 % number of iterations.
 

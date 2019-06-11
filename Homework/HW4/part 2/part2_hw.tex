@@ -1,0 +1,109 @@
+\documentclass[12]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{verbatim}
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\Lagr}{\mathscr{L}}
+
+\begin{document}
+\noindent
+\textbf{Part 2} Jim Vargas MTH 410 HW4 \\
+
+	Let it be assumed that I will be using the method of Lagrange multipliers for all of the following problems.\\
+	
+\noindent
+\textbf{1) a)}
+
+	Given $f(x)=x_1^2+2x_1 x_2+3x_2^2+4x_1+5x_2+6x_3$ for $x\in \mathbb{R}^3$, the gradient and Hessian of $f$ are, respectively,
+	$$\displaystyle{
+	\nabla f(x)=\begin{pmatrix}
+	2x_1+2x_2+4 \\
+	2x_1+6x_2+5\\
+	6
+	\end{pmatrix}
+	}$$
+	$$\displaystyle{
+	\nabla^2 f(x)=\begin{pmatrix}
+	2 & 2 & 0 \\
+	2 & 6 & 0 \\
+	0 & 0 & 0  
+	\end{pmatrix}.
+	}$$
+It follows that $\det{\nabla^2 f(x)}=0$ and $\tr{\nabla^2 f(x)}=8$, and so $f$ is convex. \\
+
+\noindent
+\textbf{1) b)}
+
+	The Lagrangian function for the problem is 
+	$$\displaystyle{
+	\Lagr (x,\lambda)= f(x)-{\lambda}_1 (x_1+2x_2-3) -{\lambda}_2 (4x_1+5x_3-6)
+	}$$
+with $\lambda=({\lambda}_1,{\lambda}_2)$. Differentiating component-wise with respect to $x$ and setting each to zero to find a unique minimizer $x$, in conjunction with the complimentary slackness conditions, we get the following equations:
+\begin{align*}
+0&=2x_1+2x_2-{\lambda}_1-4{\lambda}_2+4 \\
+0&=2x_1+6x_2-2{\lambda}_1+5 \\
+0&=-5\lambda_2+6 \\
+0&=\lambda_1(x_1+2x_2-3) \\
+0&=\lambda_2(4x_1+5x_3-6).
+\end{align*}
+The third equation yields $\displaystyle{\lambda_2=\frac{6}{5}}$. After substituting this and doing some manipulations, we get $\displaystyle x_1=\frac{\lambda_1}{4}+\frac{37}{20}$ and $\displaystyle x_2=\frac{\lambda_1}{4}-\frac{29}{20}$ and $\displaystyle x_3=\frac{-\lambda_1}{5}-\frac{7}{24}$. Eventually more computation yields $\displaystyle \lambda_1=\frac{27}{5}$ or $\lambda_1=0$, but $\lambda_1=0$ does not satisfy the constraints. Finally, the optimal solution is $\displaystyle x=\left(\frac{16}{5},\frac{-1}{10},\frac{-34}{24}\right)$ with $\displaystyle f(x)=\frac{1377}{100}$.\\
+
+
+\noindent
+\textbf{2)}
+	
+	The Lagrangian function for this problem can be written as 
+	$$\displaystyle
+	\Lagr (x,\lambda)=\frac{1}{2}\left\langle Q^\top x,x\right\rangle -c^\top x+d-\langle \lambda A^\top,x \rangle+\langle \lambda,b \rangle.
+	$$
+Taking the gradient of $\Lagr$ with respect to $x$ and setting it to zero, we get
+\begin{align*}
+0&=Q^\top x - c^\top-\lambda A^\top \\
+\Rightarrow x&=Q^{-1} (c^\top +\lambda A^\top).
+\end{align*}
+With the domain restriction, this means (at least, I think) 
+\begin{align*}
+b&=A(Q^{-1} (c^\top +\lambda A^\top)) \\
+\Rightarrow \lambda &= (AQ^{-1}A^\top)^{-1}(b-AQ^{-1}c^\top) \\
+\Rightarrow x &= Q^{-1} (c^\top +[(AQ^{-1}A^\top)^{-1}(b-AQ^{-1}c^\top)] A^\top).
+\end{align*}
+\pagebreak
+
+\noindent
+\textbf{3)}
+
+	The Lagrangian function for this problem is 
+	$$\displaystyle
+	\Lagr (x,y,\lambda)=x+2y-\lambda (x^2+y^2-1).
+	$$
+Differentiating with respect to $x$ and $y$ and setting to zero, along with the complimentary slackness condition, yields
+\begin{align*}
+0&=1-2\lambda x \\
+0&=2-2\lambda y \\
+0&=\lambda (x^2+y^2-1).
+\end{align*}
+With these, we get $\displaystyle x=\frac{1}{2\lambda}$ and $\displaystyle y=\frac{1}{\lambda}$ with $\displaystyle \lambda^2=\frac{5}{4}$. Taking the positive root of $\lambda$ to maximize $f(x,y)=x+2y$, the solution is $\displaystyle (x,y)=\left(\frac{1}{\sqrt{5}},\frac{2}{\sqrt{5}}\right)$ with $f(x,y)=\sqrt{5}$.\\
+
+\noindent
+\textbf{4)}
+	
+	The Lagrangian function for this problem is 
+	$$\displaystyle 
+	\Lagr (x,\lambda)=x_1^2+x_2^2-\lambda_1 (-x_1) -\lambda_2 (-x_2) -\lambda_3 (5-x_1-x_2)
+	$$
+for $x\in \mathbb{R}^2,\, \lambda=(\lambda_1,\lambda_2,\lambda_3)$. Taking the derivative component-wise and setting them to zero, after some computations we get $\displaystyle x_1=\frac{-\lambda_1 -\lambda_3}{2}$ and $\displaystyle x_2=\frac{-\lambda_2 -\lambda_3}{2}$ with the following conditions on $\lambda_1 ,\, \lambda_2 ,\, \lambda_3$:
+\begin{align*}
+0&=\lambda_1 \left(\frac{-\lambda_1 -\lambda_3}{2}\right) \\
+0&=\lambda_2 \left(\frac{-\lambda_2 -\lambda_3}{2}\right) \\
+0&=\lambda_3 \left(5-\frac{-\lambda_1 -\lambda_3}{2}-\frac{-\lambda_2 -\lambda_3}{2}\right).
+\end{align*}
+There are a few possible combinations of the lambdas which satisfy the above system alone, however, simple methods will show that only $\lambda_3=-5,\,\lambda_1=\lambda_2=0$ will satisfy the given boundary conditions. Therefore the solution is $\displaystyle x=\left(\frac{5}{2},\frac{5}{2}\right)$ with $\displaystyle f(x)=\frac{25}{2}$.
+\end{document}

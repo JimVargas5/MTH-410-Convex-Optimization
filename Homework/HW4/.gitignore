@@ -1,3 +1,5 @@
 # Mainly for .asv files
 
 *.asv
+*.aux
+*.gz
